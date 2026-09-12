@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Zaayan Javed - Cybersecurity Engineer at Charles Schwab, building secure configuration platforms, AI threat-exposure systems, and RAG/ML pipelines. Austin, TX.">
+<meta name="description" content="Zaayan Javed - Cybersecurity Engineer at Charles Schwab, working across enterprise vulnerability management, secure configuration, full-stack development, and AI systems. Austin, TX.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
   *,*::before,*::after{box-sizing:border-box}
@@ -49,6 +49,7 @@
     --mut: #8B9CB3;
     --cy: #06B6D4;
     --eb: #3B82F6;
+    --ok: #34D399;
     --hair: rgba(148, 180, 214, 0.14);
   }
 
@@ -127,6 +128,10 @@
   .node::after { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: var(--cy); opacity: .3; transition: opacity .3s ease; }
   .job:hover .node::after { opacity: 1; }
   .job:hover .node { box-shadow: 0 0 0 4px rgba(6, 182, 212, .14); }
+
+  /* The role he's in now: filled node in the status color, not the accent. */
+  .job.current .node { border-color: var(--ok); box-shadow: 0 0 0 4px rgba(52, 211, 153, .15); }
+  .job.current .node::after { background: var(--ok); opacity: 1; }
 
   .caret { display: inline-block; width: 7px; height: 15px; background: var(--cy); vertical-align: -2px; animation: blink 1.05s steps(2, start) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
@@ -237,13 +242,16 @@
         </p>
 
         <p class="mt-6 max-w-[62ch] text-[15px] leading-relaxed text-mut">
-          I build the plumbing security teams actually use. At
-          <span class="font-medium text-fg">Charles Schwab</span> I engineered a full-stack secure configuration
-          platform — Flask, Docker, Terraform and GCP — that lets SMEs edit baseline security configs through a UI
-          with a complete audit trail, backed by version-controlled JSON in GitHub, and co-built an AI agent that
-          scans cybersecurity blogs to surface emerging threat exposure. At
-          <span class="font-medium text-fg">FrontrowMD</span> I led AI automation: scraping and RAG pipelines that
-          cut partner onboarding by 90%. Five years across secure infrastructure, data engineering, and applied ML.
+          I work where security engineering meets software and data. At
+          <span class="font-medium text-fg">Charles Schwab</span> I'm a cybersecurity engineer in Data Protection
+          &amp; Surface — enterprise vulnerability management and secure configuration — after building the
+          full-stack platform in Flask, Docker, Terraform and GCP that lets SMEs manage baseline security configs
+          with a complete audit trail. At <span class="font-medium text-fg">FrontrowMD</span> I led AI automation
+          end to end: Python and n8n scraping pipelines, vector-database ingestion, and OCR/GPT parsing that cut
+          partner onboarding by 90%. Alongside that — RAG systems on LangChain and Llama 3.0, ML and real-time
+          services on Firebase and Redis, computer vision in OpenCV, production backends in Python, Java, Flask,
+          Django and FastAPI over PostgreSQL, and data pipelines feeding BI dashboards. Five years of building
+          systems that have to be secure and usable at the same time.
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-2.5">
@@ -378,15 +386,41 @@
   <section id="experience" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
     <div class="mb-10 flex flex-wrap items-end justify-between gap-3">
       <div>
-        <div class="label">2023 → 2026</div>
+        <div class="label">2023 → present</div>
         <h2 class="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-fg sm:text-4xl">Experience</h2>
       </div>
-      <p class="max-w-[40ch] text-[13.5px] leading-relaxed text-mut">Five roles, newest first — security engineering, AI automation, and the data work underneath both.</p>
+      <p class="max-w-[40ch] text-[13.5px] leading-relaxed text-mut">Six roles, newest first — security engineering, AI automation, and the data work underneath both.</p>
     </div>
 
     <div class="rail space-y-4 pl-8">
 
-      <!-- Schwab -->
+      <!-- Schwab, full-time -->
+      <article class="job current glass lift relative rounded-xl p-5 sm:p-6">
+        <span class="node" style="left:-32px" aria-hidden="true"></span>
+        <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
+          <div>
+            <div class="flex flex-wrap items-center gap-2.5">
+              <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Cybersecurity Engineer</h3>
+              <span class="rounded-md border border-ok/30 bg-ok/10 px-2 py-0.5 font-mono text-[10px] tracking-[.12em] text-ok">CURRENT</span>
+            </div>
+            <div class="mt-1 text-[14px] font-medium text-cy">Charles Schwab</div>
+            <div class="mt-1 font-mono text-[11.5px] tracking-wide text-mut">Data Protection &amp; Surface</div>
+          </div>
+          <div class="text-left sm:text-right">
+            <div class="font-mono text-[11.5px] tracking-wide text-mut tnum">Sep 2026 — Present</div>
+            <div class="mt-0.5 font-mono text-[11px] tracking-wide text-mut/70">Austin, TX</div>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-2.5 text-[13.5px] leading-relaxed text-mut">
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-ok/70"></span><span>Engineer on the <span class="text-fg">Secure Configuration Management</span> team, carrying forward the baseline configuration platform work I started as an intern.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-ok/70"></span><span>Part of the firm's <span class="text-fg">Enterprise Vulnerability Management</span> program within the Data Protection &amp; Surface department.</span></li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">Vulnerability Management</span><span class="pill">Secure Config Management</span><span class="pill">Baseline Hardening</span><span class="pill">Data Protection</span>
+        </div>
+      </article>
+
+      <!-- Schwab, internship -->
       <article class="job glass lift relative rounded-xl p-5 sm:p-6">
         <span class="node" style="left:-32px" aria-hidden="true"></span>
         <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
