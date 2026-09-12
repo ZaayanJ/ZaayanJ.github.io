@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Zaayan Javed - Cybersecurity Engineer at Charles Schwab, building secure configuration platforms, AI threat-exposure systems, and RAG/ML pipelines. Austin, TX.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  html{color-scheme:dark}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+<title>Zaayan Javed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
+        },
+        colors: {
+          ink: '#0F172A',
+          well: '#080D18',
+          raise: '#141E33',
+          hair: 'rgba(148,180,214,0.14)',
+          cy: '#06B6D4',
+          eb: '#3B82F6',
+          fg: '#E6EDF6',
+          mut: '#8B9CB3',
+          ok: '#34D399'
+        }
+      }
+    }
+  };
+</script>
+<style>
+  :root {
+    --ink: #0F172A;
+    --well: #080D18;
+    --fg: #E6EDF6;
+    --mut: #8B9CB3;
+    --cy: #06B6D4;
+    --eb: #3B82F6;
+    --hair: rgba(148, 180, 214, 0.14);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--ink);
+    color: var(--fg);
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Engineering grid + two muted accent auroras. Fixed so it reads as a substrate. */
+  .substrate {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(900px 600px at 82% -5%, rgba(6, 182, 212, 0.13), transparent 70%),
+      radial-gradient(760px 520px at 6% 22%, rgba(59, 130, 246, 0.11), transparent 72%),
+      linear-gradient(to bottom, rgba(8, 13, 24, 0) 0%, rgba(8, 13, 24, 0.55) 100%),
+      linear-gradient(var(--hair) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hair) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 64px 64px, 64px 64px;
+    background-position: 0 0, 0 0, 0 0, -1px -1px, -1px -1px;
+    opacity: 0.85;
+    mask-image: radial-gradient(140% 100% at 50% 0%, #000 35%, rgba(0, 0, 0, 0.35) 100%);
+  }
+
+  .glass {
+    background: linear-gradient(180deg, rgba(148, 180, 214, 0.075), rgba(148, 180, 214, 0.028));
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid var(--hair);
+  }
+
+  .lift { transition: transform .35s cubic-bezier(.2, .8, .2, 1), border-color .35s ease, box-shadow .35s ease; }
+  .lift:hover { transform: translateY(-3px); border-color: rgba(6, 182, 212, 0.42); box-shadow: 0 18px 44px -22px rgba(6, 182, 212, 0.45); }
+
+  .label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--mut);
+  }
+
+  .pill {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: .02em;
+    padding: 4px 9px;
+    border-radius: 5px;
+    border: 1px solid var(--hair);
+    background: rgba(148, 180, 214, 0.05);
+    color: #B8C7DA;
+    transition: color .2s ease, border-color .2s ease, background .2s ease;
+    white-space: nowrap;
+  }
+  .pill:hover { color: #9EEAF5; border-color: rgba(6, 182, 212, 0.5); background: rgba(6, 182, 212, 0.1); }
+
+  /* Timeline rail: the gradient runs newest -> oldest, so the rail itself encodes recency. */
+  .rail { position: relative; }
+  .rail::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--cy), rgba(59, 130, 246, .55) 45%, rgba(148, 180, 214, .14));
+  }
+  .node { position: absolute; left: 0; top: 9px; width: 11px; height: 11px; border-radius: 50%; background: var(--ink); border: 1px solid var(--cy); }
+  .node::after { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: var(--cy); opacity: .3; transition: opacity .3s ease; }
+  .job:hover .node::after { opacity: 1; }
+  .job:hover .node { box-shadow: 0 0 0 4px rgba(6, 182, 212, .14); }
+
+  .caret { display: inline-block; width: 7px; height: 15px; background: var(--cy); vertical-align: -2px; animation: blink 1.05s steps(2, start) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .rise { animation: rise .7s cubic-bezier(.2, .8, .2, 1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--cy);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  section { scroll-margin-top: 84px; }
+
+  .navlink { position: relative; }
+  .navlink::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 1px;
+    background: var(--cy);
+    transform: scaleX(0);
+    transition: transform .28s cubic-bezier(.2,.8,.2,1);
+  }
+  .navlink:hover::after, .navlink[data-active="true"]::after { transform: scaleX(1); }
+  .navlink[data-active="true"] { color: var(--fg); }
+
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise, .caret { animation: none; }
+    .lift { transition: none; }
+  }
+</style>
+
+</head>
+<body>
+<div class="substrate" aria-hidden="true"></div>
+
+<div class="relative z-10">
+
+  <!-- ══ NAV ══ -->
+  <header class="sticky top-0 z-50">
+    <div class="glass border-x-0 border-t-0">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <a href="#about" class="group flex items-center gap-2.5">
+          <span class="flex h-8 w-8 items-center justify-center rounded-md border border-hair bg-cy/10 font-mono text-[13px] font-bold text-cy">ZJ</span>
+          <span class="hidden font-display text-sm font-semibold tracking-tight text-fg sm:block">Zaayan Javed</span>
+        </a>
+
+        <div class="hidden items-center gap-7 md:flex">
+          <a href="#about" class="navlink text-[13.5px] font-medium text-mut transition-colors hover:text-fg">About</a>
+          <a href="#skills" class="navlink text-[13.5px] font-medium text-mut transition-colors hover:text-fg">Skills</a>
+          <a href="#experience" class="navlink text-[13.5px] font-medium text-mut transition-colors hover:text-fg">Experience</a>
+          <a href="#projects" class="navlink text-[13.5px] font-medium text-mut transition-colors hover:text-fg">Projects</a>
+          <a href="#contact" class="navlink text-[13.5px] font-medium text-mut transition-colors hover:text-fg">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a href="Zaayan_Javed_Resume.pdf" target="_blank" rel="noopener"
+             class="group hidden items-center gap-2 rounded-lg border border-cy/40 bg-cy/10 px-3.5 py-2 font-mono text-[12px] font-medium tracking-wide text-cy transition-all hover:border-cy/70 hover:bg-cy/20 hover:shadow-[0_0_22px_-6px_rgba(6,182,212,.6)] sm:flex">
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Résumé
+          </a>
+          <button id="menuBtn" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu"
+                  class="flex h-9 w-9 items-center justify-center rounded-lg border border-hair text-mut transition-colors hover:text-fg md:hidden">
+            <svg id="menuOpen" class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            <svg id="menuClose" class="h-[18px] w-[18px]" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+      </nav>
+
+      <div id="mobileMenu" hidden class="border-t border-hair px-4 pb-4 pt-3 md:hidden">
+        <div class="flex flex-col gap-1">
+          <a href="#about" class="rounded-lg px-3 py-2.5 text-sm font-medium text-mut transition-colors hover:bg-white/5 hover:text-fg">About</a>
+          <a href="#skills" class="rounded-lg px-3 py-2.5 text-sm font-medium text-mut transition-colors hover:bg-white/5 hover:text-fg">Skills</a>
+          <a href="#experience" class="rounded-lg px-3 py-2.5 text-sm font-medium text-mut transition-colors hover:bg-white/5 hover:text-fg">Experience</a>
+          <a href="#projects" class="rounded-lg px-3 py-2.5 text-sm font-medium text-mut transition-colors hover:bg-white/5 hover:text-fg">Projects</a>
+          <a href="#contact" class="rounded-lg px-3 py-2.5 text-sm font-medium text-mut transition-colors hover:bg-white/5 hover:text-fg">Contact</a>
+          <a href="Zaayan_Javed_Resume.pdf" target="_blank" rel="noopener" class="mt-1 rounded-lg border border-cy/40 bg-cy/10 px-3 py-2.5 font-mono text-[12.5px] tracking-wide text-cy">Download résumé →</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section id="about" class="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 sm:pb-24 sm:pt-20">
+    <div class="grid items-start gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-14">
+
+      <div class="rise">
+        <div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-hair bg-white/[0.03] px-3 py-1.5">
+          <span class="relative flex h-1.5 w-1.5">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-75"></span>
+            <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-ok"></span>
+          </span>
+          <span class="label !text-[10.5px] !tracking-[.16em]">Austin, TX &nbsp;·&nbsp; Cybersecurity Engineer @ Charles Schwab</span>
+        </div>
+
+        <h1 class="font-display text-[2.6rem] font-extrabold leading-[1.03] tracking-[-0.035em] text-fg sm:text-6xl" style="text-wrap: balance;">
+          Zaayan<br class="hidden sm:block"> Javed
+        </h1>
+
+        <p class="mt-5 max-w-[34ch] font-display text-lg font-semibold leading-snug tracking-tight text-transparent sm:text-[1.375rem]"
+           style="background-image: linear-gradient(100deg, #7DD3FC, #06B6D4 45%, #3B82F6); -webkit-background-clip: text; background-clip: text;">
+          Cybersecurity Engineer — Full-Stack &amp; AI Systems
+        </p>
+
+        <p class="mt-6 max-w-[62ch] text-[15px] leading-relaxed text-mut">
+          I build the plumbing security teams actually use. At
+          <span class="font-medium text-fg">Charles Schwab</span> I engineered a full-stack secure configuration
+          platform — Flask, Docker, Terraform and GCP — that lets SMEs edit baseline security configs through a UI
+          with a complete audit trail, backed by version-controlled JSON in GitHub, and co-built an AI agent that
+          scans cybersecurity blogs to surface emerging threat exposure. At
+          <span class="font-medium text-fg">FrontrowMD</span> I led AI automation: scraping and RAG pipelines that
+          cut partner onboarding by 90%. Five years across secure infrastructure, data engineering, and applied ML.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-2.5">
+          <a href="mailto:zaayan2003@gmail.com"
+             class="group inline-flex items-center gap-2 rounded-lg bg-cy px-4 py-2.5 text-[13.5px] font-semibold tracking-tight text-well transition-all hover:bg-[#22D3EE] hover:shadow-[0_0_28px_-6px_rgba(6,182,212,.75)]">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2.5 6 9.5 7 9.5-7"/></svg>
+            zaayan2003@gmail.com
+          </a>
+          <a href="https://github.com/ZaayanJ" target="_blank" rel="noopener"
+             class="glass lift inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-[13.5px] font-medium text-fg">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.55v-2.1c-3.2.7-3.88-1.4-3.88-1.4-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .96-.3 3.15 1.18a10.9 10.9 0 0 1 5.74 0C18.04 4.04 19 4.34 19 4.34c.63 1.58.23 2.75.11 3.04.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.18c0 .3.2.66.8.55A11.5 11.5 0 0 0 23.5 12A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            GitHub
+          </a>
+          <a href="https://linkedin.com/in/zaayan-javed" target="_blank" rel="noopener"
+             class="glass lift inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-[13.5px] font-medium text-fg">
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM2.5 21.5h5V9.5h-5v12ZM10 9.5h4.79v1.64h.07c.67-1.2 2.3-2.06 4.14-2.06 3.34 0 4.5 2.06 4.5 5.4v7.02h-5v-6.23c0-1.56-.56-2.63-1.96-2.63-1.07 0-1.7.72-1.98 1.42-.1.25-.13.6-.13.95v6.49H10V9.5Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <!-- Terminal widget -->
+      <div class="rise glass overflow-hidden rounded-xl" style="animation-delay:.12s">
+        <div class="flex items-center gap-2 border-b border-hair bg-white/[0.02] px-4 py-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-[#3B4B63]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[#3B4B63]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[#3B4B63]"></span>
+          <span class="ml-2 font-mono text-[11px] tracking-wide text-mut">zaayan@austin — stack</span>
+          <span class="ml-auto font-mono text-[10.5px] tracking-[.14em] text-ok">● LIVE</span>
+        </div>
+        <div class="px-4 py-4 font-mono text-[12.5px] leading-[1.85] sm:px-5 sm:text-[13px]">
+          <div class="text-mut"><span class="text-cy">➜</span> <span class="text-eb">~</span> whoami</div>
+          <div class="mb-1 text-fg">cybersecurity &middot; data engineering &middot; ai systems</div>
+          <div class="text-mut"><span class="text-cy">➜</span> <span class="text-eb">~</span> stack --active --verify</div>
+          <div id="term" class="min-h-[190px] text-[#C3D2E4]" aria-live="polite"></div>
+          <div class="text-mut"><span class="text-cy">➜</span> <span class="text-eb">~</span> <span class="caret" aria-hidden="true"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outcome strip: the figures recruiters scan for -->
+    <div class="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-hair bg-hair sm:mt-16 lg:grid-cols-4">
+      <div class="bg-ink/70 px-5 py-5 backdrop-blur-sm">
+        <div class="font-display text-3xl font-extrabold tracking-tight text-cy tnum">90%</div>
+        <div class="mt-1.5 text-[12.5px] leading-snug text-mut">faster partner onboarding via vector-DB ingestion</div>
+      </div>
+      <div class="bg-ink/70 px-5 py-5 backdrop-blur-sm">
+        <div class="font-display text-3xl font-extrabold tracking-tight text-cy tnum">95%</div>
+        <div class="mt-1.5 text-[12.5px] leading-snug text-mut">OCR + GPT accuracy parsing nutritional labels</div>
+      </div>
+      <div class="bg-ink/70 px-5 py-5 backdrop-blur-sm">
+        <div class="font-display text-3xl font-extrabold tracking-tight text-cy tnum">4,000+</div>
+        <div class="mt-1.5 text-[12.5px] leading-snug text-mut">users served by real-time RAG &amp; ML services</div>
+      </div>
+      <div class="bg-ink/70 px-5 py-5 backdrop-blur-sm">
+        <div class="font-display text-3xl font-extrabold tracking-tight text-cy tnum">200+</div>
+        <div class="mt-1.5 text-[12.5px] leading-snug text-mut">geospatial datasets processed for conservation BI</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SKILLS ══ -->
+  <section id="skills" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <div class="mb-9 flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <div class="label">Core capabilities</div>
+        <h2 class="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-fg sm:text-4xl">The toolkit</h2>
+      </div>
+      <p class="max-w-[42ch] text-[13.5px] leading-relaxed text-mut">Four domains I work across daily — from hardening cloud baselines to shipping retrieval pipelines.</p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <!-- Security -->
+      <div class="glass lift rounded-xl p-5 sm:p-6">
+        <div class="flex items-center gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cy/30 bg-cy/10 text-cy">
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.9 7.5 9 4.3-1.1 7.5-4.6 7.5-9V6L12 3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
+          </span>
+          <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">Cybersecurity &amp; Infrastructure</h3>
+        </div>
+        <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Baseline security config management, version-controlled audit trails, and containerized infrastructure delivered as code.</p>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">GCP</span><span class="pill">AWS</span><span class="pill">Docker</span><span class="pill">Terraform</span><span class="pill">Secure Config Mgmt</span><span class="pill">Audit Trails</span><span class="pill">Baseline Hardening</span><span class="pill">GitHub CLI</span><span class="pill">Jira</span><span class="pill">Confluence</span>
+        </div>
+      </div>
+
+      <!-- AI -->
+      <div class="glass lift rounded-xl p-5 sm:p-6">
+        <div class="flex items-center gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-eb/30 bg-eb/10 text-eb">
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.6"/><circle cx="5" cy="6" r="1.9"/><circle cx="19" cy="6" r="1.9"/><circle cx="5" cy="18" r="1.9"/><circle cx="19" cy="18" r="1.9"/><path d="M6.6 7.3l3.2 3.1M17.4 7.3l-3.2 3.1M6.6 16.7l3.2-3.1M17.4 16.7l-3.2-3.1"/></svg>
+          </span>
+          <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">AI / ML &amp; Automation</h3>
+        </div>
+        <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Retrieval pipelines, agentic browsing, and vision prototypes — from embedding ingestion to on-device inference.</p>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">LangChain</span><span class="pill">Llama 3.0</span><span class="pill">RAG Pipelines</span><span class="pill">Vector Databases</span><span class="pill">n8n</span><span class="pill">OpenCV</span><span class="pill">MediaPipe</span><span class="pill">Hugging Face</span><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">scikit-learn</span><span class="pill">Ollama</span>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div class="glass lift rounded-xl p-5 sm:p-6">
+        <div class="flex items-center gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-cy/30 bg-cy/10 text-cy">
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m8.5 8.5-4 3.5 4 3.5"/><path d="m15.5 8.5 4 3.5-4 3.5"/><path d="m13.5 5-3 14"/></svg>
+          </span>
+          <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">Languages &amp; Backend</h3>
+        </div>
+        <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Production services and REST APIs, plus the relational modeling behind them.</p>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">Python</span><span class="pill">Java</span><span class="pill">C / C++</span><span class="pill">JavaScript</span><span class="pill">SQL</span><span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">Flask</span><span class="pill">Django</span><span class="pill">FastAPI</span><span class="pill">Spring Boot</span><span class="pill">Node.js</span><span class="pill">React</span><span class="pill">REST APIs</span>
+        </div>
+      </div>
+
+      <!-- Data -->
+      <div class="glass lift rounded-xl p-5 sm:p-6">
+        <div class="flex items-center gap-3">
+          <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-eb/30 bg-eb/10 text-eb">
+            <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7" ry="2.8"/><path d="M5 5.5v6c0 1.55 3.13 2.8 7 2.8s7-1.25 7-2.8v-6"/><path d="M5 11.5v6c0 1.55 3.13 2.8 7 2.8s7-1.25 7-2.8v-6"/></svg>
+          </span>
+          <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">Data Engineering &amp; Viz</h3>
+        </div>
+        <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Pipelines, caches, and BI-ready layers — including geospatial analysis at dataset scale.</p>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">pandas</span><span class="pill">NumPy</span><span class="pill">Redis</span><span class="pill">Firebase</span><span class="pill">Tableau</span><span class="pill">ArcGIS Pro</span><span class="pill">Google Earth Engine</span><span class="pill">Matplotlib</span><span class="pill">Streamlit</span><span class="pill">R</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ EXPERIENCE ══ -->
+  <section id="experience" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-3">
+      <div>
+        <div class="label">2023 → 2026</div>
+        <h2 class="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-fg sm:text-4xl">Experience</h2>
+      </div>
+      <p class="max-w-[40ch] text-[13.5px] leading-relaxed text-mut">Five roles, newest first — security engineering, AI automation, and the data work underneath both.</p>
+    </div>
+
+    <div class="rail space-y-4 pl-8">
+
+      <!-- Schwab -->
+      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
+        <span class="node" style="left:-32px" aria-hidden="true"></span>
+        <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
+          <div>
+            <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Cybersecurity &amp; Data Engineering Intern</h3>
+            <div class="mt-1 text-[14px] font-medium text-cy">Charles Schwab</div>
+          </div>
+          <div class="text-left sm:text-right">
+            <div class="font-mono text-[11.5px] tracking-wide text-mut tnum">Jun 2026 — Aug 2026</div>
+            <div class="mt-0.5 font-mono text-[11px] tracking-wide text-mut/70">Austin, TX</div>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-2.5 text-[13.5px] leading-relaxed text-mut">
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Engineered a full-stack <span class="text-fg">secure configuration management platform</span> (Flask, Docker Desktop, GitHub CLI, Terraform, GCP) letting SMEs update baseline security configs through an intuitive UI with a full audit trail.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Designed a GitHub-backed baseline storage system persisting configurations as JSON, so baselines stay version-controlled and drop into future pipeline components.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Co-developed a proof-of-concept <span class="text-fg">threat exposure assessment platform</span> driven by an AI agent that continuously scans cybersecurity blogs, acting as an internal threat-intelligence feed for employees.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Supported a patching exposure reduction initiative — sourced critical documentation, assisted survey data collection, tracked work in Jira and maintained docs in Confluence.</span></li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">Flask</span><span class="pill">Terraform</span><span class="pill">GCP</span><span class="pill">Docker</span><span class="pill">GitHub CLI</span><span class="pill">AI Agents</span><span class="pill">Jira</span>
+        </div>
+      </article>
+
+      <!-- FrontrowMD -->
+      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
+        <span class="node" style="left:-32px" aria-hidden="true"></span>
+        <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
+          <div>
+            <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Lead AI Automation Engineer</h3>
+            <div class="mt-1 text-[14px] font-medium text-cy">FrontrowMD</div>
+          </div>
+          <div class="text-left sm:text-right">
+            <div class="font-mono text-[11.5px] tracking-wide text-mut tnum">May 2025 — Sep 2025</div>
+            <div class="mt-0.5 font-mono text-[11px] tracking-wide text-mut/70">Austin, TX</div>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-2.5 text-[13.5px] leading-relaxed text-mut">
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Built an end-to-end scraping pipeline in Python and n8n using Jina and Firecrawl to extract <span class="text-fg">full product catalogs from a single domain URL</span>, eliminating manual setup.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Automated ingestion of product data (price, cadence, nutritional facts) into a vector database, cutting partner onboarding time by <span class="text-fg tnum">90%</span>.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Applied OCR and GPT-based image analysis to parse nutritional labels at <span class="text-fg tnum">95%</span> accuracy, keeping catalog coverage reliable.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Integrated the Airtop API for autonomous browsing and optimized MCP server connections for real-time catalog coverage.</span></li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">Python</span><span class="pill">n8n</span><span class="pill">Vector DB</span><span class="pill">Firecrawl</span><span class="pill">Jina</span><span class="pill">OCR</span><span class="pill">MCP</span><span class="pill">Airtop API</span>
+        </div>
+      </article>
+
+      <!-- Klein -->
+      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
+        <span class="node" style="left:-32px" aria-hidden="true"></span>
+        <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
+          <div>
+            <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Software Engineer Intern</h3>
+            <div class="mt-1 text-[14px] font-medium text-cy">Klein Sports Performance</div>
+          </div>
+          <div class="text-left sm:text-right">
+            <div class="font-mono text-[11.5px] tracking-wide text-mut tnum">Sep 2024 — May 2025</div>
+            <div class="mt-0.5 font-mono text-[11px] tracking-wide text-mut/70">Austin, TX</div>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-2.5 text-[13.5px] leading-relaxed text-mut">
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Developed a <span class="text-fg">RAG chatbot</span> with LangChain + Llama 3.0 over 20+ research studies, delivering personalized fitness guidance and lifting engagement <span class="text-fg tnum">30%</span>.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Built ML models and real-time support services on Firebase, Redis and Ollama, serving <span class="text-fg tnum">4,000+</span> users and cutting onboarding time <span class="text-fg tnum">40%</span>.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Prototyped computer vision form-correction models with OpenCV and MediaPipe, laying groundwork for in-app AI coaching.</span></li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">LangChain</span><span class="pill">Llama 3.0</span><span class="pill">Firebase</span><span class="pill">Redis</span><span class="pill">Ollama</span><span class="pill">OpenCV</span><span class="pill">MediaPipe</span>
+        </div>
+      </article>
+
+      <!-- Citgo -->
+      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
+        <span class="node" style="left:-32px" aria-hidden="true"></span>
+        <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
+          <div>
+            <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Data Integration Specialist</h3>
+            <div class="mt-1 text-[14px] font-medium text-cy">Citgo</div>
+          </div>
+          <div class="text-left sm:text-right">
+            <div class="font-mono text-[11.5px] tracking-wide text-mut tnum">May 2023 — Apr 2025</div>
+            <div class="mt-0.5 font-mono text-[11px] tracking-wide text-mut/70">Austin, TX</div>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-2.5 text-[13.5px] leading-relaxed text-mut">
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Automated financial reporting and sales forecasting in Python/SQL, removing manual work and saving <span class="text-fg tnum">$5K</span> annually.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Built scalable pipelines processing 2+ years of transactions, improving procurement and supply chain efficiency.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Integrated ERP datasets into dashboards — reconciliation accuracy up <span class="text-fg tnum">12%</span>, reporting cycles down <span class="text-fg tnum">40%</span>.</span></li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">ETL Pipelines</span><span class="pill">ERP</span><span class="pill">Tableau</span>
+        </div>
+      </article>
+
+      <!-- TNC -->
+      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
+        <span class="node" style="left:-32px" aria-hidden="true"></span>
+        <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
+          <div>
+            <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Data Science Intern</h3>
+            <div class="mt-1 text-[14px] font-medium text-cy">The Nature Conservancy</div>
+          </div>
+          <div class="text-left sm:text-right">
+            <div class="font-mono text-[11.5px] tracking-wide text-mut tnum">May 2024 — Aug 2024</div>
+            <div class="mt-0.5 font-mono text-[11px] tracking-wide text-mut/70">Austin, TX</div>
+          </div>
+        </div>
+        <ul class="mt-4 space-y-2.5 text-[13.5px] leading-relaxed text-mut">
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Processed and analyzed <span class="text-fg tnum">200+</span> geospatial datasets with ArcGIS Pro and Google Earth Engine, delivering BI-ready layers for conservation research.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Automated land-use and habitat monitoring workflows in Python, reducing manual processing <span class="text-fg tnum">50%</span>.</span></li>
+          <li class="flex gap-2.5"><span class="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-cy/70"></span><span>Created reproducible spatial visualizations and methods to support data-driven environmental planning.</span></li>
+        </ul>
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          <span class="pill">ArcGIS Pro</span><span class="pill">Google Earth Engine</span><span class="pill">Python</span><span class="pill">Geospatial</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ PROJECTS ══ -->
+  <section id="projects" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <div class="mb-9">
+      <div class="label">Built &amp; led</div>
+      <h2 class="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-fg sm:text-4xl">Projects &amp; leadership</h2>
+    </div>
+
+    <div class="grid gap-4 lg:grid-cols-[1.25fr_.75fr]">
+      <article class="glass lift rounded-xl p-5 sm:p-7">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-cy/30 bg-cy/10 text-cy">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 9h8M8 13h5"/><path d="M8 21h8"/></svg>
+            </span>
+            <div>
+              <h3 class="font-display text-xl font-semibold tracking-tight text-fg">PC Forge</h3>
+              <div class="mt-0.5 font-mono text-[11.5px] tracking-wide text-mut">Full-stack PC builder &middot; 2024</div>
+            </div>
+          </div>
+          <span class="rounded-md border border-ok/30 bg-ok/10 px-2.5 py-1 font-mono text-[10.5px] tracking-[.12em] text-ok">SHIPPED</span>
+        </div>
+
+        <p class="mt-5 max-w-[64ch] text-[14px] leading-relaxed text-mut">
+          A build-configurator app with a Django/Python backend handling CRUD, filtering logic and
+          <span class="text-fg">real-time compatibility checks across 10+ hardware components</span> — so a user can't
+          spec a board that won't take their CPU. Django auth enforces admin, user and employee roles; the frontend is
+          a modular Tailwind interface wired up with Node.js.
+        </p>
+
+        <div class="mt-6 grid gap-px overflow-hidden rounded-lg border border-hair bg-hair sm:grid-cols-3">
+          <div class="bg-well/40 px-4 py-3">
+            <div class="label !text-[10px]">Compatibility</div>
+            <div class="mt-1 text-[13px] text-fg">Real-time rule engine</div>
+          </div>
+          <div class="bg-well/40 px-4 py-3">
+            <div class="label !text-[10px]">Access control</div>
+            <div class="mt-1 text-[13px] text-fg">3 auth roles</div>
+          </div>
+          <div class="bg-well/40 px-4 py-3">
+            <div class="label !text-[10px]">Catalog</div>
+            <div class="mt-1 text-[13px] text-fg">10+ part categories</div>
+          </div>
+        </div>
+
+        <div class="mt-5 flex flex-wrap items-center gap-1.5">
+          <span class="pill">Django</span><span class="pill">Python</span><span class="pill">Node.js</span><span class="pill">Tailwind CSS</span><span class="pill">HTML/CSS</span>
+          <a href="https://github.com/ZaayanJ" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#67E8F9]">
+            View on GitHub
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="glass lift rounded-xl p-5 sm:p-7">
+        <div class="flex items-center gap-3">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-eb/30 bg-eb/10 text-eb">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19a4 4 0 0 0-8 0"/><circle cx="12" cy="10" r="3"/><path d="M4.5 18a7.5 7.5 0 1 1 15 0"/></svg>
+          </span>
+          <div>
+            <h3 class="font-display text-xl font-semibold tracking-tight text-fg">AI &amp; CS Club Leader</h3>
+            <div class="mt-0.5 font-mono text-[11.5px] tracking-wide text-mut">St. Edward's University &middot; 2022–2025</div>
+          </div>
+        </div>
+
+        <p class="mt-5 text-[14px] leading-relaxed text-mut">
+          Organized <span class="text-fg">3+ hackathons</span> and AI/engineering panels with industry partners,
+          giving <span class="text-fg">100+ students</span> hands-on exposure to real-world software and AI practice —
+          and mentored them through their own engineering projects.
+        </p>
+
+        <div class="mt-6 space-y-px overflow-hidden rounded-lg border border-hair bg-hair">
+          <div class="flex items-baseline justify-between bg-well/40 px-4 py-3">
+            <span class="text-[13px] text-mut">Hackathons &amp; panels run</span>
+            <span class="font-mono text-[13px] font-medium text-fg tnum">3+</span>
+          </div>
+          <div class="flex items-baseline justify-between bg-well/40 px-4 py-3">
+            <span class="text-[13px] text-mut">Students mentored</span>
+            <span class="font-mono text-[13px] font-medium text-fg tnum">100+</span>
+          </div>
+          <div class="flex items-baseline justify-between bg-well/40 px-4 py-3">
+            <span class="text-[13px] text-mut">Years leading</span>
+            <span class="font-mono text-[13px] font-medium text-fg tnum">3</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+    <div class="glass overflow-hidden rounded-2xl">
+      <div class="grid gap-0 lg:grid-cols-[.9fr_1.1fr]">
+
+        <div class="border-b border-hair p-6 sm:p-8 lg:border-b-0 lg:border-r">
+          <div class="label">Get in touch</div>
+          <h2 class="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-fg sm:text-4xl" style="text-wrap: balance;">Let's build something secure</h2>
+          <p class="mt-4 max-w-[40ch] text-[14px] leading-relaxed text-mut">
+            I'm a cybersecurity engineer at Charles Schwab in Austin. Happy to talk secure infrastructure,
+            retrieval pipelines, or anything in between — email is the fastest route, and I answer within a day.
+          </p>
+
+          <div class="mt-7 space-y-3">
+            <a href="mailto:zaayan2003@gmail.com" class="group flex items-center gap-3 text-[14px] text-fg transition-colors hover:text-cy">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-hair bg-white/[0.03] text-mut transition-colors group-hover:border-cy/40 group-hover:text-cy">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>
+              </span>
+              zaayan2003@gmail.com
+            </a>
+            <a href="tel:+15129552833" class="group flex items-center gap-3 text-[14px] text-fg transition-colors hover:text-cy">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-hair bg-white/[0.03] text-mut transition-colors group-hover:border-cy/40 group-hover:text-cy">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5c0-.8.7-1.5 1.5-1.5h2c.7 0 1.3.5 1.5 1.2l.6 2.5c.1.6-.1 1.2-.6 1.5l-1.2.8a11 11 0 0 0 5 5l.8-1.2c.3-.5.9-.7 1.5-.6l2.5.6c.7.2 1.2.8 1.2 1.5v2c0 .8-.7 1.5-1.5 1.5A15.5 15.5 0 0 1 4 5Z"/></svg>
+              </span>
+              <span class="tnum">(512) 955-2833</span>
+            </a>
+            <div class="flex items-center gap-3 text-[14px] text-mut">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-hair bg-white/[0.03] text-mut">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              </span>
+              Austin, TX
+            </div>
+          </div>
+        </div>
+
+        <form id="contactForm" class="p-6 sm:p-8" novalidate>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label for="cName" class="label block">Name</label>
+              <input id="cName" name="name" type="text" required autocomplete="name"
+                     class="mt-2 w-full rounded-lg border border-hair bg-well/50 px-3.5 py-2.5 text-[14px] text-fg placeholder-mut/60 transition-colors focus:border-cy/60 focus:outline-none"
+                     placeholder="Jordan Reyes">
+            </div>
+            <div>
+              <label for="cEmail" class="label block">Email</label>
+              <input id="cEmail" name="email" type="email" required autocomplete="email"
+                     class="mt-2 w-full rounded-lg border border-hair bg-well/50 px-3.5 py-2.5 text-[14px] text-fg placeholder-mut/60 transition-colors focus:border-cy/60 focus:outline-none"
+                     placeholder="jordan@company.com">
+            </div>
+          </div>
+          <div class="mt-4">
+            <label for="cSubject" class="label block">Subject</label>
+            <input id="cSubject" name="subject" type="text"
+                   class="mt-2 w-full rounded-lg border border-hair bg-well/50 px-3.5 py-2.5 text-[14px] text-fg placeholder-mut/60 transition-colors focus:border-cy/60 focus:outline-none"
+                   placeholder="Question about your secure config platform">
+          </div>
+          <div class="mt-4">
+            <label for="cMessage" class="label block">Message</label>
+            <textarea id="cMessage" name="message" rows="4" required
+                      class="mt-2 w-full resize-y rounded-lg border border-hair bg-well/50 px-3.5 py-2.5 text-[14px] leading-relaxed text-fg placeholder-mut/60 transition-colors focus:border-cy/60 focus:outline-none"
+                      placeholder="Hi Zaayan — I read about your baseline config work and wanted to compare notes…"></textarea>
+          </div>
+
+          <div class="mt-5 flex flex-wrap items-center gap-3">
+            <button type="submit"
+                    class="inline-flex items-center gap-2 rounded-lg bg-cy px-4 py-2.5 text-[13.5px] font-semibold tracking-tight text-well transition-all hover:bg-[#22D3EE] hover:shadow-[0_0_28px_-6px_rgba(6,182,212,.75)]">
+              Open in email client
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+            <p id="formNote" class="font-mono text-[11.5px] text-mut" role="status">This composes a message in your mail app — nothing is sent from this page.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="border-t border-hair">
+    <div class="mx-auto flex max-w-6xl flex-col gap-5 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <div>
+        <div class="font-display text-[15px] font-semibold tracking-tight text-fg">Zaayan Javed</div>
+        <div class="mt-1 font-mono text-[11.5px] tracking-wide text-mut">Austin, TX &nbsp;·&nbsp; Cybersecurity · Data · AI Systems</div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="https://github.com/ZaayanJ" target="_blank" rel="noopener" aria-label="GitHub"
+           class="flex h-9 w-9 items-center justify-center rounded-lg border border-hair text-mut transition-all hover:border-cy/40 hover:text-cy">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.55v-2.1c-3.2.7-3.88-1.4-3.88-1.4-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .96-.3 3.15 1.18a10.9 10.9 0 0 1 5.74 0C18.04 4.04 19 4.34 19 4.34c.63 1.58.23 2.75.11 3.04.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.18c0 .3.2.66.8.55A11.5 11.5 0 0 0 23.5 12A11.5 11.5 0 0 0 12 .5Z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/zaayan-javed" target="_blank" rel="noopener" aria-label="LinkedIn"
+           class="flex h-9 w-9 items-center justify-center rounded-lg border border-hair text-mut transition-all hover:border-cy/40 hover:text-cy">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM2.5 21.5h5V9.5h-5v12ZM10 9.5h4.79v1.64h.07c.67-1.2 2.3-2.06 4.14-2.06 3.34 0 4.5 2.06 4.5 5.4v7.02h-5v-6.23c0-1.56-.56-2.63-1.96-2.63-1.07 0-1.7.72-1.98 1.42-.1.25-.13.6-.13.95v6.49H10V9.5Z"/></svg>
+        </a>
+        <a href="mailto:zaayan2003@gmail.com" aria-label="Email"
+           class="flex h-9 w-9 items-center justify-center rounded-lg border border-hair text-mut transition-all hover:border-cy/40 hover:text-cy">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>
+        </a>
+      </div>
+
+      <div class="font-mono text-[11px] tracking-wide text-mut/70 tnum">© <span id="yr">2026</span> Zaayan Javed</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    'use strict';
+
+    /* ── Mobile menu ───────────────────────────── */
+    var btn = document.getElementById('menuBtn');
+    var menu = document.getElementById('mobileMenu');
+    var iOpen = document.getElementById('menuOpen');
+    var iClose = document.getElementById('menuClose');
+
+    function setMenu(open) {
+      menu.hidden = !open;
+      iOpen.hidden = open;
+      iClose.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    }
+    btn.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) { setMenu(false); btn.focus(); }
+    });
+
+    /* ── Smooth scroll (respects reduced motion) ── */
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        history.replaceState(null, '', link.getAttribute('href'));
+      });
+    });
+
+    /* ── Nav scroll-spy ────────────────────────── */
+    var ids = ['about', 'skills', 'experience', 'projects', 'contact'];
+    var links = Array.prototype.slice.call(document.querySelectorAll('.navlink'));
+    function spy() {
+      var line = window.scrollY + 140, current = ids[0];
+      ids.forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && el.offsetTop <= line) current = id;
+      });
+      links.forEach(function (l) {
+        l.setAttribute('data-active', String(l.getAttribute('href') === '#' + current));
+      });
+    }
+    spy();
+    window.addEventListener('scroll', spy, { passive: true });
+
+    /* ── Hero terminal ─────────────────────────── */
+    var lines = [
+      ['gcp',        'iam · compute · cloud run',      'verified'],
+      ['docker',     'containerized service builds',   'verified'],
+      ['terraform',  'infra as code · baselines',      'verified'],
+      ['langchain',  'rag · agents · tool calling',    'verified'],
+      ['flask',      'secure config platform api',     'verified'],
+      ['postgresql', 'schema design · query tuning',   'verified'],
+      ['vector-db',  'embedding ingestion at scale',   'verified']
+    ];
+    var term = document.getElementById('term');
+
+    function row(name, desc, tag, partial) {
+      var d = document.createElement('div');
+      d.className = 'flex items-baseline gap-2';
+      var n = document.createElement('span');
+      n.className = 'text-cy';
+      n.textContent = name;
+      var t = document.createElement('span');
+      t.className = 'truncate text-mut';
+      t.textContent = desc;
+      d.appendChild(n);
+      d.appendChild(t);
+      if (!partial) {
+        var s = document.createElement('span');
+        s.className = 'ml-auto shrink-0 text-ok';
+        s.textContent = '✓ ' + tag;
+        d.appendChild(s);
+      }
+      return d;
+    }
+
+    function renderAll() {
+      term.textContent = '';
+      lines.forEach(function (l) { term.appendChild(row(l[0], l[1], l[2], false)); });
+    }
+
+    if (reduce) {
+      renderAll();
+    } else {
+      var i = 0, j = 0, active = null;
+      (function tick() {
+        if (i >= lines.length) {
+          setTimeout(function () { i = 0; j = 0; term.textContent = ''; tick(); }, 4200);
+          return;
+        }
+        var line = lines[i];
+        var full = line[1];
+        if (j === 0) {
+          active = row(line[0], '', line[2], true);
+          term.appendChild(active);
+        }
+        j += 2;
+        active.children[1].textContent = full.slice(0, j);
+        if (j < full.length) {
+          setTimeout(tick, 26);
+        } else {
+          var s = document.createElement('span');
+          s.className = 'ml-auto shrink-0 text-ok';
+          s.textContent = '✓ ' + line[2];
+          active.appendChild(s);
+          i++; j = 0;
+          setTimeout(tick, 210);
+        }
+      })();
+    }
+
+    /* ── Contact form → mail client ────────────── */
+    var form = document.getElementById('contactForm');
+    var note = document.getElementById('formNote');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = document.getElementById('cName').value.trim();
+      var email = document.getElementById('cEmail').value.trim();
+      var subject = document.getElementById('cSubject').value.trim();
+      var message = document.getElementById('cMessage').value.trim();
+
+      if (!name || !email || !message) {
+        note.textContent = 'Add your name, email, and a message first.';
+        note.className = 'font-mono text-[11.5px] text-[#FBBF24]';
+        return;
+      }
+      var body = message + '\n\n—\n' + name + '\n' + email;
+      window.location.href = 'mailto:zaayan2003@gmail.com'
+        + '?subject=' + encodeURIComponent(subject || ('Portfolio inquiry from ' + name))
+        + '&body=' + encodeURIComponent(body);
+      note.textContent = 'Opening your mail app with this message drafted.';
+      note.className = 'font-mono text-[11.5px] text-ok';
+    });
+
+    /* ── Footer year ───────────────────────────── */
+    document.getElementById('yr').textContent = String(new Date().getFullYear());
+  })();
+</script>
+
+</body>
+</html>
