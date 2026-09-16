@@ -618,6 +618,68 @@
         </div>
       </article>
     </div>
+
+    <div class="label mb-4 mt-12">Side projects</div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <!-- FindTheRuling -->
+      <article class="glass lift rounded-xl p-5 sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-cy/30 bg-cy/10 text-cy">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><circle cx="11.5" cy="13.5" r="2.5"/><path d="m13.4 15.4 2.1 2.1"/></svg>
+          </span>
+          <div>
+            <h3 class="font-display text-lg font-semibold tracking-tight text-fg">FindTheRuling</h3>
+            <div class="mt-0.5 font-mono text-[11.5px] tracking-wide text-mut">Vision-language legal document search</div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-[13.5px] leading-relaxed text-mut">
+          Upload a scanned legal PDF and ask questions in plain language. Pages are rendered to images and read by
+          <span class="text-fg">Gemini 2.5 Pro</span> as a vision-language model, which returns extracted entities —
+          names, agencies, case IDs, statutes — as structured JSON with a confidence score and a
+          <span class="text-fg">bounding box drawn on the page the answer came from</span>, so every result is
+          traceable to its source rather than asserted.
+        </p>
+
+        <div class="mt-5 flex flex-wrap items-center gap-1.5">
+          <span class="pill">Python</span><span class="pill">Gemini 2.5 Pro</span><span class="pill">PyMuPDF</span><span class="pill">Streamlit</span>
+          <a href="https://github.com/ZaayanJ/FindTheRuling" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#67E8F9]">
+            Repo
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- ResumeParser -->
+      <article class="glass lift rounded-xl p-5 sm:p-6">
+        <div class="flex items-start gap-3">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-eb/30 bg-eb/10 text-eb">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4"/><path d="M8 8h4M8 12h3"/><path d="m15 9 2.5 2.5L22 7"/></svg>
+          </span>
+          <div>
+            <h3 class="font-display text-lg font-semibold tracking-tight text-fg">ResumeParser</h3>
+            <div class="mt-0.5 font-mono text-[11.5px] tracking-wide text-mut">NLP document extraction service</div>
+          </div>
+        </div>
+
+        <p class="mt-4 text-[13.5px] leading-relaxed text-mut">
+          A Flask service that turns PDF and DOCX resumes into <span class="text-fg">structured JSON</span> — name,
+          email, skills, education, experience — using a custom <span class="text-fg">spaCy NER pipeline</span> over
+          text pulled by PDFMiner and python-docx, behind a plain upload interface. Cuts manual screening time by
+          roughly <span class="text-fg tnum">75%</span> at <span class="text-fg tnum">85%+</span> field accuracy on
+          real-world resume formats.
+        </p>
+
+        <div class="mt-5 flex flex-wrap items-center gap-1.5">
+          <span class="pill">Python</span><span class="pill">Flask</span><span class="pill">spaCy</span><span class="pill">Custom NER</span><span class="pill">PDFMiner</span>
+          <a href="https://github.com/ZaayanJ/ResumeParser" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#67E8F9]">
+            Repo
+            <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
   </section>
 
   <!-- ══ CONTACT ══ -->
