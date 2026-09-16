@@ -113,6 +113,10 @@
   }
   .pill:hover { color: #9EEAF5; border-color: rgba(6, 182, 212, 0.5); background: rgba(6, 182, 212, 0.1); }
 
+  /* Toolkit depth: core tools carry weight, the rest recede. */
+  .pill.core { color: #DCE8F6; border-color: rgba(6, 182, 212, 0.34); background: rgba(6, 182, 212, 0.09); }
+  .pill.soft { color: #8496AB; border-color: rgba(148, 180, 214, 0.13); background: transparent; }
+
   /* Timeline rail: the gradient runs newest -> oldest, so the rail itself encodes recency. */
   .rail { position: relative; }
   .rail::before {
@@ -313,7 +317,7 @@
         <div class="label">Core capabilities</div>
         <h2 class="mt-2 font-display text-3xl font-bold tracking-[-0.03em] text-fg sm:text-4xl">The toolkit</h2>
       </div>
-      <p class="max-w-[42ch] text-[13.5px] leading-relaxed text-mut">Four domains I work across daily — from hardening cloud baselines to shipping retrieval pipelines.</p>
+      <p class="max-w-[42ch] text-[13.5px] leading-relaxed text-mut">Four domains, tiered by how deep I actually go — what I build with, and what I reach for when a project calls for it.</p>
     </div>
 
     <div class="grid gap-4 md:grid-cols-2">
@@ -326,8 +330,11 @@
           <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">Cybersecurity &amp; Infrastructure</h3>
         </div>
         <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Baseline security config management, version-controlled audit trails, and containerized infrastructure delivered as code.</p>
-        <div class="mt-4 flex flex-wrap gap-1.5">
-          <span class="pill">GCP</span><span class="pill">AWS</span><span class="pill">Docker</span><span class="pill">Terraform</span><span class="pill">Secure Config Mgmt</span><span class="pill">Audit Trails</span><span class="pill">Baseline Hardening</span><span class="pill">GitHub CLI</span><span class="pill">Jira</span><span class="pill">Confluence</span>
+        <div class="mt-4">
+          <div class="label mb-2 !text-[9.5px]">Core</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill core">GCP</span><span class="pill core">Docker</span><span class="pill core">Terraform</span><span class="pill core">Secure Config Mgmt</span><span class="pill core">Baseline Hardening</span><span class="pill core">Audit Trails</span></div>
+          <div class="label mb-2 mt-4 !text-[9.5px]">Working knowledge</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill soft">AWS</span><span class="pill soft">GitHub CLI</span></div>
         </div>
       </div>
 
@@ -340,8 +347,11 @@
           <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">AI / ML &amp; Automation</h3>
         </div>
         <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Retrieval pipelines, agentic browsing, and vision prototypes — from embedding ingestion to on-device inference.</p>
-        <div class="mt-4 flex flex-wrap gap-1.5">
-          <span class="pill">LangChain</span><span class="pill">Llama 3.0</span><span class="pill">RAG Pipelines</span><span class="pill">Vector Databases</span><span class="pill">n8n</span><span class="pill">OpenCV</span><span class="pill">MediaPipe</span><span class="pill">Hugging Face</span><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">scikit-learn</span><span class="pill">Ollama</span>
+        <div class="mt-4">
+          <div class="label mb-2 !text-[9.5px]">Core</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill core">LangChain</span><span class="pill core">RAG Pipelines</span><span class="pill core">Vector Databases</span><span class="pill core">PyTorch</span><span class="pill core">Llama 3.0</span><span class="pill core">n8n</span></div>
+          <div class="label mb-2 mt-4 !text-[9.5px]">Working knowledge</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill soft">MediaPipe</span><span class="pill soft">OpenCV</span><span class="pill soft">Hugging Face</span><span class="pill soft">TensorFlow</span><span class="pill soft">scikit-learn</span><span class="pill soft">Ollama</span></div>
         </div>
       </div>
 
@@ -354,8 +364,11 @@
           <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">Languages &amp; Backend</h3>
         </div>
         <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Production services and REST APIs, plus the relational modeling behind them.</p>
-        <div class="mt-4 flex flex-wrap gap-1.5">
-          <span class="pill">Python</span><span class="pill">Java</span><span class="pill">C / C++</span><span class="pill">JavaScript</span><span class="pill">SQL</span><span class="pill">PostgreSQL</span><span class="pill">MySQL</span><span class="pill">Flask</span><span class="pill">Django</span><span class="pill">FastAPI</span><span class="pill">Spring Boot</span><span class="pill">Node.js</span><span class="pill">React</span><span class="pill">REST APIs</span>
+        <div class="mt-4">
+          <div class="label mb-2 !text-[9.5px]">Core</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill core">Python</span><span class="pill core">SQL</span><span class="pill core">Flask</span><span class="pill core">FastAPI</span><span class="pill core">Django</span><span class="pill core">PostgreSQL</span></div>
+          <div class="label mb-2 mt-4 !text-[9.5px]">Working knowledge</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill soft">Java</span><span class="pill soft">C / C++</span><span class="pill soft">JavaScript</span><span class="pill soft">Spring Boot</span><span class="pill soft">Node.js</span><span class="pill soft">React</span><span class="pill soft">MySQL</span><span class="pill soft">REST APIs</span></div>
         </div>
       </div>
 
@@ -368,8 +381,11 @@
           <h3 class="font-display text-[17px] font-semibold tracking-tight text-fg">Data Engineering &amp; Viz</h3>
         </div>
         <p class="mt-3.5 text-[13.5px] leading-relaxed text-mut">Pipelines, caches, and BI-ready layers — including geospatial analysis at dataset scale.</p>
-        <div class="mt-4 flex flex-wrap gap-1.5">
-          <span class="pill">pandas</span><span class="pill">NumPy</span><span class="pill">Redis</span><span class="pill">Firebase</span><span class="pill">Tableau</span><span class="pill">ArcGIS Pro</span><span class="pill">Google Earth Engine</span><span class="pill">Matplotlib</span><span class="pill">Streamlit</span><span class="pill">R</span>
+        <div class="mt-4">
+          <div class="label mb-2 !text-[9.5px]">Core</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill core">pandas</span><span class="pill core">NumPy</span><span class="pill core">Redis</span><span class="pill core">Firebase</span></div>
+          <div class="label mb-2 mt-4 !text-[9.5px]">Working knowledge</div>
+          <div class="flex flex-wrap gap-1.5"><span class="pill soft">Tableau</span><span class="pill soft">ArcGIS Pro</span><span class="pill soft">Google Earth Engine</span><span class="pill soft">Matplotlib</span><span class="pill soft">Streamlit</span><span class="pill soft">R</span></div>
         </div>
       </div>
     </div>
