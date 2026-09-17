@@ -96,7 +96,7 @@
       radial-gradient(900px 620px at 84% -6%, rgba(168, 85, 247, 0.17), transparent 70%),
       radial-gradient(780px 540px at 4% 24%, rgba(159, 18, 57, 0.16), transparent 72%),
       radial-gradient(1100px 300px at 50% 104%, rgba(168, 85, 247, 0.08), transparent 74%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23A855F7' stroke-opacity='0.16' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M0 80 Q42 76 60 58 Q72 46 80 0'/%3E%3Cpath d='M160 80 Q118 84 100 102 Q88 114 80 160'/%3E%3Cpath d='M80 80 Q104 60 136 52'/%3E%3Cpath d='M80 80 Q56 100 24 108'/%3E%3Cpath d='M60 58 L52 40'/%3E%3Cpath d='M100 102 L108 120'/%3E%3C/g%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23DFD6EA' stroke-opacity='0.13' stroke-width='0.7' stroke-linecap='round'%3E%3Cpath d='M0 80 Q42 76 60 58 Q72 46 80 0'/%3E%3Cpath d='M160 80 Q118 84 100 102 Q88 114 80 160'/%3E%3Cpath d='M80 80 Q104 60 136 52'/%3E%3Cpath d='M80 80 Q56 100 24 108'/%3E%3Cpath d='M60 58 L52 40'/%3E%3Cpath d='M100 102 L108 120'/%3E%3C/g%3E%3C/svg%3E"),
       linear-gradient(to bottom, rgba(5, 4, 9, 0) 0%, rgba(5, 4, 9, 0.6) 100%),
       linear-gradient(var(--hair) 1px, transparent 1px),
       linear-gradient(90deg, var(--hair) 1px, transparent 1px);
@@ -106,20 +106,53 @@
     mask-image: radial-gradient(150% 100% at 50% 0%, #000 30%, rgba(0, 0, 0, 0.3) 100%);
   }
 
+  /* Ornament linework is bone, not accent: the references are white-on-black,
+     and violet stays for bloom and interaction. */
+  .sg-ring  { stroke: rgba(223, 214, 234, .40); }
+  .sg-hair  { stroke: rgba(223, 214, 234, .34); }
+  .sg-hook  { stroke: rgba(216, 180, 254, .46); }
+  .sg-fill  { fill: rgba(231, 224, 240, .40); }
+
+  /* Needle fringe hanging from under the nav. */
+  .fringe {
+    position: fixed;
+    top: 57px; left: 0; right: 0;
+    height: 150px;
+    z-index: 1;
+    pointer-events: none;
+    background-repeat: repeat-x;
+    background-size: 214px 150px, 337px 150px;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='214' height='150' viewBox='0 0 214 150'%3E%3Cg fill='%23E7E0F0' fill-opacity='0.42'%3E%3Cpath d='M16 0 Q16.9 62 17.5 134 Q18.1 62 19 0Z'/%3E%3Cpath d='M43 0 Q43.7 28 44.1 58 Q44.5 28 45.2 0Z'/%3E%3Cpath d='M71 0 Q71.9 46 72.4 96 Q72.9 46 73.8 0Z'/%3E%3Cpath d='M104 0 Q104.8 18 105.2 34 Q105.6 18 106.4 0Z'/%3E%3Cpath d='M131 0 Q131.9 70 132.5 146 Q133.1 70 134 0Z'/%3E%3Cpath d='M166 0 Q166.7 34 167.1 70 Q167.5 34 168.2 0Z'/%3E%3Cpath d='M196 0 Q196.8 24 197.2 46 Q197.6 24 198.4 0Z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23D8B4FE' stroke-opacity='0.38' stroke-width='0.65' stroke-linecap='round'%3E%3Cpath d='M10 30 Q17.5 40 25 30'/%3E%3Cpath d='M65 52 Q72.4 64 80 52'/%3E%3Cpath d='M124 40 Q132.5 54 141 40'/%3E%3Cpath d='M124 86 Q132.5 100 141 86'/%3E%3Cpath d='M160 26 Q167.1 36 174 26'/%3E%3C/g%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='337' height='150' viewBox='0 0 337 150'%3E%3Cg fill='%23DFD6EA' fill-opacity='0.2'%3E%3Cpath d='M32 0 Q32.7 40 33.1 82 Q33.5 40 34.2 0Z'/%3E%3Cpath d='M118 0 Q118.6 54 119 112 Q119.4 54 120 0Z'/%3E%3Cpath d='M204 0 Q204.7 30 205.1 62 Q205.5 30 206.2 0Z'/%3E%3Cpath d='M288 0 Q288.7 48 289.1 98 Q289.5 48 290.2 0Z'/%3E%3C/g%3E%3C/svg%3E");
+    mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 55%, transparent 100%);
+  }
+
+  /* Symmetric rune divider between sections. */
+  .rune {
+    height: 26px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 260px 26px;
+    opacity: .75;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='26' viewBox='0 0 260 26'%3E%3Cg fill='%23E7E0F0' fill-opacity='0.55'%3E%3Cpath d='M130 13 Q70 11.6 4 10 Q70 14.4 130 16 Q190 14.4 256 10 Q190 11.6 130 13Z'/%3E%3Cpath d='M130 0 Q131 7 131.4 13 Q130 7 129 0Z'/%3E%3Cpath d='M130 26 Q131 19 131.4 13 Q130 19 129 26Z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23D8B4FE' stroke-opacity='0.55' stroke-width='0.9' stroke-linecap='round'%3E%3Cpath d='M112 6 Q130 13 148 6'/%3E%3Cpath d='M112 20 Q130 13 148 20'/%3E%3Cpath d='M92 13 L84 8 M92 13 L84 18'/%3E%3Cpath d='M168 13 L176 8 M168 13 L176 18'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
   /* Hero sigil: ornament, never content. Sits behind the name at low alpha. */
   #about { position: relative; overflow: hidden; }
   .sigil {
     position: absolute;
     top: -110px; left: -210px;
-    width: 620px; height: 620px;
-    opacity: .2;
+    width: 640px; height: 640px;
+    opacity: .34;
     pointer-events: none;
     z-index: -1;
     mask-image: radial-gradient(closest-side, #000 55%, transparent 100%);
     animation: turn 140s linear infinite;
   }
   @keyframes turn { to { transform: rotate(360deg); } }
-  @media (max-width: 860px) { .sigil { width: 430px; height: 430px; top: -80px; left: -190px; opacity: .15; } }
+  @media (max-width: 860px) { .sigil { width: 440px; height: 440px; top: -80px; left: -195px; opacity: .26; } }
 
   .glass {
     position: relative;
@@ -239,6 +272,7 @@
 </head>
 <body>
 <div class="substrate" aria-hidden="true"></div>
+<div class="fringe" aria-hidden="true"></div>
 
 <div class="relative z-10">
 
@@ -289,20 +323,48 @@
   <!-- ══ HERO ══ -->
   <section id="about" class="mx-auto max-w-6xl px-4 pb-16 pt-14 sm:px-6 sm:pb-24 sm:pt-20">
     <svg class="sigil" viewBox="0 0 400 400" aria-hidden="true">
-      <g fill="none" stroke="#A855F7" stroke-width="1.1" stroke-linecap="round">
-        <circle cx="200" cy="200" r="150"/>
-        <circle cx="200" cy="200" r="96" stroke="#9F1239"/>
-        <circle cx="200" cy="200" r="42"/>
-        <path d="M200 50 Q214 120 200 158 Q186 120 200 50Z"/>
-        <path d="M200 350 Q214 280 200 242 Q186 280 200 350Z"/>
-        <path d="M50 200 Q120 214 158 200 Q120 186 50 200Z"/>
-        <path d="M350 200 Q280 214 242 200 Q280 186 350 200Z"/>
-        <path d="M94 94 Q150 150 168 168 Q150 150 94 94Z" stroke="#9F1239"/>
-        <path d="M306 306 Q250 250 232 232 Q250 250 306 306Z" stroke="#9F1239"/>
-        <path d="M306 94 Q250 150 232 168" stroke="#9F1239"/>
-        <path d="M94 306 Q150 250 168 232" stroke="#9F1239"/>
-        <path d="M200 158 L188 132 M200 158 L212 132"/>
-        <path d="M200 242 L188 268 M200 242 L212 268"/>
+      <g class="sg-ring" fill="none" stroke-width="0.7">
+        <circle cx="200" cy="200" r="142"/>
+        <circle cx="200" cy="200" r="88"/>
+        <circle cx="200" cy="200" r="31"/>
+        <path d="M200 58 A142 142 0 0 1 342 200"/>
+        <path d="M200 342 A142 142 0 0 1 58 200"/>
+      </g>
+
+      <!-- vertical spine + needle tips -->
+      <g class="sg-fill">
+        <path d="M197 200 Q199.4 96 200 6 Q200.6 96 203 200 Q200.6 304 200 394 Q199.4 304 197 200Z"/>
+        <path d="M200 200 Q104 197.6 14 196 Q104 200.6 200 203 Q296 200.6 386 204 Q296 202.4 200 200Z"/>
+      </g>
+
+      <!-- crossing barbs, mirrored about both axes -->
+      <g class="sg-fill">
+        <path d="M200 132 Q168 128 128 120 Q168 134 200 138Z"/>
+        <path d="M200 132 Q232 128 272 120 Q232 134 200 138Z"/>
+        <path d="M200 268 Q168 272 128 280 Q168 266 200 262Z"/>
+        <path d="M200 268 Q232 272 272 280 Q232 266 200 262Z"/>
+        <path d="M132 200 Q128 168 120 128 Q134 168 138 200Z"/>
+        <path d="M268 200 Q272 168 280 128 Q266 168 262 200Z"/>
+        <path d="M132 200 Q128 232 120 272 Q134 232 138 200Z"/>
+        <path d="M268 200 Q272 232 280 272 Q266 232 262 200Z"/>
+      </g>
+
+      <!-- crescent hooks on the diagonals -->
+      <g class="sg-hook" fill="none" stroke-width="1.1" stroke-linecap="round">
+        <path d="M118 118 Q150 150 186 158 Q146 142 118 118"/>
+        <path d="M282 282 Q250 250 214 242 Q254 258 282 282"/>
+        <path d="M282 118 Q250 150 214 158 Q254 142 282 118"/>
+        <path d="M118 282 Q150 250 186 242 Q146 258 118 282"/>
+        <path d="M200 88 Q176 118 200 142 Q224 118 200 88"/>
+        <path d="M200 312 Q176 282 200 258 Q224 282 200 312"/>
+      </g>
+
+      <!-- fine radiating hairlines -->
+      <g class="sg-hair" fill="none" stroke-width="0.55">
+        <path d="M200 31 L200 6 M200 369 L200 394 M31 200 L6 200 M369 200 L394 200"/>
+        <path d="M156 68 L146 44 M244 68 L254 44 M156 332 L146 356 M244 332 L254 356"/>
+        <path d="M68 156 L44 146 M68 244 L44 254 M332 156 L356 146 M332 244 L356 254"/>
+        <path d="M200 58 Q214 118 200 142 Q186 118 200 58"/>
       </g>
     </svg>
     <div class="grid items-start gap-10 lg:grid-cols-[1.05fr_.95fr] lg:gap-14">
@@ -391,6 +453,7 @@
   </section>
 
   <!-- ══ SKILLS ══ -->
+  <div class="rune" aria-hidden="true"></div>
   <section id="skills" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
     <div class="mb-9 flex flex-wrap items-end justify-between gap-3">
       <div>
@@ -452,6 +515,7 @@
   </section>
 
   <!-- ══ EXPERIENCE ══ -->
+  <div class="rune" aria-hidden="true"></div>
   <section id="experience" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
     <div class="mb-10 flex flex-wrap items-end justify-between gap-3">
       <div>
@@ -629,6 +693,7 @@
   </section>
 
   <!-- ══ PROJECTS ══ -->
+  <div class="rune" aria-hidden="true"></div>
   <section id="projects" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
     <div class="mb-9">
       <div class="label">Built &amp; led</div>
@@ -832,6 +897,7 @@
   </section>
 
   <!-- ══ CONTACT ══ -->
+  <div class="rune" aria-hidden="true"></div>
   <section id="contact" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
     <div class="glass overflow-hidden rounded-2xl">
       <div class="grid gap-0 lg:grid-cols-[.9fr_1.1fr]">
