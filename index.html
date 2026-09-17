@@ -113,21 +113,6 @@
   .sg-hook  { stroke: rgba(216, 180, 254, .46); }
   .sg-fill  { fill: rgba(231, 224, 240, .40); }
 
-  /* Needle fringe hanging from under the nav. */
-  .fringe {
-    position: fixed;
-    top: 57px; left: 0; right: 0;
-    height: 150px;
-    z-index: 1;
-    pointer-events: none;
-    background-repeat: repeat-x;
-    background-size: 214px 150px, 337px 150px;
-    background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='214' height='150' viewBox='0 0 214 150'%3E%3Cg fill='%23E7E0F0' fill-opacity='0.42'%3E%3Cpath d='M16 0 Q16.9 62 17.5 134 Q18.1 62 19 0Z'/%3E%3Cpath d='M43 0 Q43.7 28 44.1 58 Q44.5 28 45.2 0Z'/%3E%3Cpath d='M71 0 Q71.9 46 72.4 96 Q72.9 46 73.8 0Z'/%3E%3Cpath d='M104 0 Q104.8 18 105.2 34 Q105.6 18 106.4 0Z'/%3E%3Cpath d='M131 0 Q131.9 70 132.5 146 Q133.1 70 134 0Z'/%3E%3Cpath d='M166 0 Q166.7 34 167.1 70 Q167.5 34 168.2 0Z'/%3E%3Cpath d='M196 0 Q196.8 24 197.2 46 Q197.6 24 198.4 0Z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23D8B4FE' stroke-opacity='0.38' stroke-width='0.65' stroke-linecap='round'%3E%3Cpath d='M10 30 Q17.5 40 25 30'/%3E%3Cpath d='M65 52 Q72.4 64 80 52'/%3E%3Cpath d='M124 40 Q132.5 54 141 40'/%3E%3Cpath d='M124 86 Q132.5 100 141 86'/%3E%3Cpath d='M160 26 Q167.1 36 174 26'/%3E%3C/g%3E%3C/svg%3E"),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='337' height='150' viewBox='0 0 337 150'%3E%3Cg fill='%23DFD6EA' fill-opacity='0.2'%3E%3Cpath d='M32 0 Q32.7 40 33.1 82 Q33.5 40 34.2 0Z'/%3E%3Cpath d='M118 0 Q118.6 54 119 112 Q119.4 54 120 0Z'/%3E%3Cpath d='M204 0 Q204.7 30 205.1 62 Q205.5 30 206.2 0Z'/%3E%3Cpath d='M288 0 Q288.7 48 289.1 98 Q289.5 48 290.2 0Z'/%3E%3C/g%3E%3C/svg%3E");
-    mask-image: linear-gradient(to bottom, #000 0%, rgba(0,0,0,.35) 55%, transparent 100%);
-  }
-
   /* Symmetric rune divider between sections. */
   .rune {
     height: 26px;
@@ -272,7 +257,6 @@
 </head>
 <body>
 <div class="substrate" aria-hidden="true"></div>
-<div class="fringe" aria-hidden="true"></div>
 
 <div class="relative z-10">
 
