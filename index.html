@@ -35,29 +35,29 @@
 <title>Zaayan Javed</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=UnifrakturMaguntia&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=UnifrakturMaguntia&display=swap">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         fontFamily: {
-          display: ['Cinzel', 'Georgia', 'serif'],
+          display: ['"Chakra Petch"', 'sans-serif'],
           ui: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
           sigil: ['UnifrakturMaguntia', 'Georgia', 'serif'],
           sans: ['Inter', 'system-ui', 'sans-serif'],
           mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
         },
         colors: {
-          ink: '#08070D',
-          well: '#050409',
-          raise: '#100B18',
-          hair: 'rgba(186,160,224,0.15)',
-          cy: '#A855F7',
-          eb: '#9F1239',
-          fg: '#EAE4F2',
-          mut: '#9C90AE',
-          ok: '#C084FC'
+          ink: '#06070A',
+          well: '#020305',
+          raise: '#0D0F14',
+          hair: 'rgba(200, 208, 222,0.15)',
+          cy: '#D9DEE8',
+          eb: '#8C1C34',
+          fg: '#F2F4F8',
+          mut: '#8A8F9C',
+          ok: '#F2F5FA'
         }
       }
     }
@@ -65,14 +65,14 @@
 </script>
 <style>
   :root {
-    --ink: #08070D;
-    --well: #050409;
-    --fg: #EAE4F2;
-    --mut: #9C90AE;
-    --cy: #A855F7;
-    --eb: #9F1239;
-    --ok: #C084FC;
-    --hair: rgba(186, 160, 224, 0.14);
+    --ink: #06070A;
+    --well: #020305;
+    --fg: #F2F4F8;
+    --mut: #8A8F9C;
+    --cy: #D9DEE8;
+    --eb: #8C1C34;
+    --ok: #F2F5FA;
+    --hair: rgba(200, 208, 222, 0.14);
   }
 
   html { scroll-behavior: smooth; }
@@ -93,11 +93,11 @@
     z-index: 0;
     pointer-events: none;
     background-image:
-      radial-gradient(900px 620px at 84% -6%, rgba(168, 85, 247, 0.17), transparent 70%),
-      radial-gradient(780px 540px at 4% 24%, rgba(159, 18, 57, 0.16), transparent 72%),
-      radial-gradient(1100px 300px at 50% 104%, rgba(168, 85, 247, 0.08), transparent 74%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23DFD6EA' stroke-opacity='0.13' stroke-width='0.7' stroke-linecap='round'%3E%3Cpath d='M0 80 Q42 76 60 58 Q72 46 80 0'/%3E%3Cpath d='M160 80 Q118 84 100 102 Q88 114 80 160'/%3E%3Cpath d='M80 80 Q104 60 136 52'/%3E%3Cpath d='M80 80 Q56 100 24 108'/%3E%3Cpath d='M60 58 L52 40'/%3E%3Cpath d='M100 102 L108 120'/%3E%3C/g%3E%3C/svg%3E"),
-      linear-gradient(to bottom, rgba(5, 4, 9, 0) 0%, rgba(5, 4, 9, 0.6) 100%),
+      radial-gradient(900px 620px at 84% -6%, rgba(217, 222, 232, 0.17), transparent 70%),
+      radial-gradient(780px 540px at 4% 24%, rgba(140, 28, 52, 0.16), transparent 72%),
+      radial-gradient(1100px 300px at 50% 104%, rgba(217, 222, 232, 0.08), transparent 74%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23C8D0DE' stroke-opacity='0.13' stroke-width='0.7' stroke-linecap='round'%3E%3Cpath d='M0 80 Q42 76 60 58 Q72 46 80 0'/%3E%3Cpath d='M160 80 Q118 84 100 102 Q88 114 80 160'/%3E%3Cpath d='M80 80 Q104 60 136 52'/%3E%3Cpath d='M80 80 Q56 100 24 108'/%3E%3Cpath d='M60 58 L52 40'/%3E%3Cpath d='M100 102 L108 120'/%3E%3C/g%3E%3C/svg%3E"),
+      linear-gradient(to bottom, rgba(2, 3, 5, 0) 0%, rgba(2, 3, 5, 0.6) 100%),
       linear-gradient(var(--hair) 1px, transparent 1px),
       linear-gradient(90deg, var(--hair) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 100% 100%, 160px 160px, 100% 100%, 80px 80px, 80px 80px;
@@ -108,10 +108,10 @@
 
   /* Ornament linework is bone, not accent: the references are white-on-black,
      and violet stays for bloom and interaction. */
-  .sg-ring  { stroke: rgba(223, 214, 234, .40); }
-  .sg-hair  { stroke: rgba(223, 214, 234, .34); }
-  .sg-hook  { stroke: rgba(216, 180, 254, .46); }
-  .sg-fill  { fill: rgba(231, 224, 240, .40); }
+  .sg-ring  { stroke: rgba(226, 232, 242, .44); }
+  .sg-hair  { stroke: rgba(226, 232, 242, .34); }
+  .sg-hook  { stroke: rgba(200, 40, 70, .62); }
+  .sg-fill  { fill: rgba(232, 238, 246, .42); }
 
   /* Symmetric rune divider between sections. */
   .rune {
@@ -121,7 +121,7 @@
     background-position: center;
     background-size: 260px 26px;
     opacity: .75;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='26' viewBox='0 0 260 26'%3E%3Cg fill='%23E7E0F0' fill-opacity='0.55'%3E%3Cpath d='M130 13 Q70 11.6 4 10 Q70 14.4 130 16 Q190 14.4 256 10 Q190 11.6 130 13Z'/%3E%3Cpath d='M130 0 Q131 7 131.4 13 Q130 7 129 0Z'/%3E%3Cpath d='M130 26 Q131 19 131.4 13 Q130 19 129 26Z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23D8B4FE' stroke-opacity='0.55' stroke-width='0.9' stroke-linecap='round'%3E%3Cpath d='M112 6 Q130 13 148 6'/%3E%3Cpath d='M112 20 Q130 13 148 20'/%3E%3Cpath d='M92 13 L84 8 M92 13 L84 18'/%3E%3Cpath d='M168 13 L176 8 M168 13 L176 18'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='26' viewBox='0 0 260 26'%3E%3Cg fill='%23E2E8F2' fill-opacity='0.55'%3E%3Cpath d='M130 13 Q70 11.6 4 10 Q70 14.4 130 16 Q190 14.4 256 10 Q190 11.6 130 13Z'/%3E%3Cpath d='M130 0 Q131 7 131.4 13 Q130 7 129 0Z'/%3E%3Cpath d='M130 26 Q131 19 131.4 13 Q130 19 129 26Z'/%3E%3C/g%3E%3Cg fill='none' stroke='%23C82846' stroke-opacity='0.55' stroke-width='0.9' stroke-linecap='round'%3E%3Cpath d='M112 6 Q130 13 148 6'/%3E%3Cpath d='M112 20 Q130 13 148 20'/%3E%3Cpath d='M92 13 L84 8 M92 13 L84 18'/%3E%3Cpath d='M168 13 L176 8 M168 13 L176 18'/%3E%3C/g%3E%3C/svg%3E");
   }
 
   /* Hero sigil: ornament, never content. Sits behind the name at low alpha. */
@@ -141,7 +141,7 @@
 
   .glass {
     position: relative;
-    background: linear-gradient(180deg, rgba(186, 160, 224, 0.07), rgba(186, 160, 224, 0.022));
+    background: linear-gradient(180deg, rgba(200, 208, 222, 0.07), rgba(200, 208, 222, 0.022));
     backdrop-filter: blur(14px) saturate(130%);
     -webkit-backdrop-filter: blur(14px) saturate(130%);
     border: 1px solid var(--hair);
@@ -155,7 +155,7 @@
     content: "";
     position: absolute;
     width: 13px; height: 13px;
-    border-color: rgba(168, 85, 247, .55);
+    border-color: rgba(217, 222, 232, .55);
     transition: border-color .35s ease;
     pointer-events: none;
   }
@@ -169,7 +169,7 @@
   div.lift:hover::before, div.lift:hover::after { border-color: rgba(216, 180, 254, .95); }
 
   .lift { transition: transform .35s cubic-bezier(.2, .8, .2, 1), border-color .35s ease, box-shadow .35s ease; }
-  .lift:hover { transform: translateY(-3px); border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 18px 50px -24px rgba(168, 85, 247, 0.55), 0 0 0 1px rgba(159, 18, 57, .25); }
+  .lift:hover { transform: translateY(-3px); border-color: rgba(217, 222, 232, 0.4); box-shadow: 0 18px 50px -24px rgba(217, 222, 232, 0.55), 0 0 0 1px rgba(140, 28, 52, .25); }
 
   .label {
     font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -187,12 +187,12 @@
     border-radius: 2px;
     border: 1px solid var(--hair);
     clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
-    background: rgba(186, 160, 224, 0.05);
-    color: #C2B5D4;
+    background: rgba(200, 208, 222, 0.05);
+    color: #BCC2CE;
     transition: color .2s ease, border-color .2s ease, background .2s ease;
     white-space: nowrap;
   }
-  .pill:hover { color: #E9D5FF; border-color: rgba(168, 85, 247, 0.5); background: rgba(168, 85, 247, 0.1); }
+  .pill:hover { color: #FFFFFF; border-color: rgba(217, 222, 232, 0.5); background: rgba(217, 222, 232, 0.1); }
 
   /* Timeline rail: the gradient runs newest -> oldest, so the rail itself encodes recency. */
   .rail { position: relative; }
@@ -203,19 +203,19 @@
     top: 8px;
     bottom: 8px;
     width: 1px;
-    background: linear-gradient(to bottom, var(--cy) 0%, rgba(159, 18, 57, .8) 42%, rgba(186, 160, 224, .12) 100%);
+    background: linear-gradient(to bottom, var(--cy) 0%, rgba(140, 28, 52, .8) 42%, rgba(200, 208, 222, .12) 100%);
   }
   .node { position: absolute; left: 0; top: 9px; width: 11px; height: 11px; background: var(--ink); border: 1px solid var(--cy); transform: rotate(45deg); }
   .node::after { content: ""; position: absolute; inset: 2px; background: var(--cy); opacity: .3; transition: opacity .3s ease; }
   .job:hover .node::after { opacity: 1; }
-  .job:hover .node { box-shadow: 0 0 0 4px rgba(168, 85, 247, .14); }
+  .job:hover .node { box-shadow: 0 0 0 4px rgba(217, 222, 232, .14); }
   /* rows, not panels: a hairline does the separating a border used to */
   .job + .job { padding-top: 28px; border-top: 1px solid var(--hair); }
   .job h3 { transition: color .25s ease; }
-  .job:hover h3 { color: #E9D5FF; }
+  .job:hover h3 { color: #FFFFFF; }
 
   /* The role he's in now: filled node in the status color, not the accent. */
-  .job.current .node { border-color: var(--ok); box-shadow: 0 0 0 4px rgba(192, 132, 252, .15); }
+  .job.current .node { border-color: var(--ok); box-shadow: 0 0 0 4px rgba(242, 245, 250, .15); }
   .job.current .node::after { background: var(--ok); opacity: 1; }
 
   .caret { display: inline-block; width: 7px; height: 15px; background: var(--cy); vertical-align: -2px; animation: blink 1.05s steps(2, start) infinite; }
@@ -279,7 +279,7 @@
 
         <div class="flex items-center gap-2">
           <a href="Zaayan_Javed_Resume.pdf" target="_blank" rel="noopener"
-             class="group hidden items-center gap-2 rounded-lg border border-cy/40 bg-cy/10 px-3.5 py-2 font-mono text-[12px] font-medium tracking-wide text-cy transition-all hover:border-cy/70 hover:bg-cy/20 hover:shadow-[0_0_22px_-6px_rgba(168, 85, 247,.6)] sm:flex">
+             class="group hidden items-center gap-2 rounded-lg border border-cy/40 bg-cy/10 px-3.5 py-2 font-mono text-[12px] font-medium tracking-wide text-cy transition-all hover:border-cy/70 hover:bg-cy/20 hover:shadow-[0_0_22px_-6px_rgba(217, 222, 232,.6)] sm:flex">
             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M5 21h14"/></svg>
             Résumé
           </a>
@@ -362,12 +362,12 @@
           <span class="label !text-[10.5px] !tracking-[.16em]">Austin, TX &nbsp;·&nbsp; Cybersecurity Engineer @ Charles Schwab</span>
         </div>
 
-        <h1 class="font-display text-[2.7rem] font-black uppercase leading-[1.04] tracking-[0.015em] text-fg sm:text-6xl" style="text-wrap: balance;">
+        <h1 class="font-display text-[2.7rem] font-bold uppercase leading-[1.04] tracking-[0.015em] text-fg sm:text-6xl" style="text-wrap: balance;">
           Zaayan<br class="hidden sm:block"> Javed
         </h1>
 
         <p class="mt-5 max-w-[34ch] font-ui text-lg font-semibold leading-snug tracking-tight text-transparent sm:text-[1.375rem]"
-           style="background-image: linear-gradient(100deg, #E9D5FF, #A855F7 45%, #9F1239); -webkit-background-clip: text; background-clip: text;">
+           style="background-image: linear-gradient(100deg, #FFFFFF, #D9DEE8 45%, #8C1C34); -webkit-background-clip: text; background-clip: text;">
           Cybersecurity Engineer — Full-Stack &amp; AI Systems
         </p>
 
@@ -383,7 +383,7 @@
 
         <div class="mt-8 flex flex-wrap items-center gap-2.5">
           <a href="mailto:zaayan2003@gmail.com"
-             class="group inline-flex items-center gap-2 rounded-lg bg-cy px-4 py-2.5 text-[13.5px] font-semibold tracking-tight text-well transition-all hover:bg-[#C084FC] hover:shadow-[0_0_28px_-6px_rgba(168, 85, 247,.75)]">
+             class="group inline-flex items-center gap-2 rounded-lg bg-cy px-4 py-2.5 text-[13.5px] font-semibold tracking-tight text-well transition-all hover:bg-[#F2F5FA] hover:shadow-[0_0_28px_-6px_rgba(217, 222, 232,.75)]">
             <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2.5 6 9.5 7 9.5-7"/></svg>
             zaayan2003@gmail.com
           </a>
@@ -403,9 +403,9 @@
       <!-- Terminal widget -->
       <div class="rise glass overflow-hidden rounded-xl" style="animation-delay:.12s">
         <div class="flex items-center gap-2 border-b border-hair bg-white/[0.02] px-4 py-2.5">
-          <span class="h-2.5 w-2.5 rounded-full bg-[#2A2136]"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-[#2A2136]"></span>
-          <span class="h-2.5 w-2.5 rounded-full bg-[#2A2136]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[#1C2029]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[#1C2029]"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-[#1C2029]"></span>
           <span class="ml-2 font-mono text-[11px] tracking-wide text-mut">zaayan@austin — stack</span>
           <span class="ml-auto font-mono text-[10.5px] tracking-[.14em] text-ok">● LIVE</span>
         </div>
@@ -413,7 +413,7 @@
           <div class="text-mut"><span class="text-cy">➜</span> <span class="text-eb">~</span> whoami</div>
           <div class="mb-1 text-fg">cybersecurity &middot; data engineering &middot; ai systems</div>
           <div class="text-mut"><span class="text-cy">➜</span> <span class="text-eb">~</span> stack --active --verify</div>
-          <div id="term" class="min-h-[190px] text-[#CFC4DE]" aria-live="polite"></div>
+          <div id="term" class="min-h-[190px] text-[#CDD2DC]" aria-live="polite"></div>
           <div class="text-mut"><span class="text-cy">➜</span> <span class="text-eb">~</span> <span class="caret" aria-hidden="true"></span></div>
         </div>
       </div>
@@ -442,7 +442,7 @@
     <div class="mb-9 flex flex-wrap items-end justify-between gap-3">
       <div>
         <div class="label">Core capabilities</div>
-        <h2 class="mt-2 font-display text-[2rem] font-black uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]">The toolkit</h2>
+        <h2 class="mt-2 font-display text-[2rem] font-bold uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]">The toolkit</h2>
       </div>
       <p class="max-w-[42ch] text-[13.5px] leading-relaxed text-mut">Four domains I work across — from hardening cloud baselines to shipping retrieval pipelines.</p>
     </div>
@@ -504,7 +504,7 @@
     <div class="mb-10 flex flex-wrap items-end justify-between gap-3">
       <div>
         <div class="label">2023 → present</div>
-        <h2 class="mt-2 font-display text-[2rem] font-black uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]">Experience</h2>
+        <h2 class="mt-2 font-display text-[2rem] font-bold uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]">Experience</h2>
       </div>
       <p class="max-w-[40ch] text-[13.5px] leading-relaxed text-mut">Six roles, newest first — security engineering, AI automation, and the data work underneath both.</p>
     </div>
@@ -681,7 +681,7 @@
   <section id="projects" class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
     <div class="mb-9">
       <div class="label">Built &amp; led</div>
-      <h2 class="mt-2 font-display text-[2rem] font-black uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]">Projects &amp; leadership</h2>
+      <h2 class="mt-2 font-display text-[2rem] font-bold uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]">Projects &amp; leadership</h2>
     </div>
 
     <!-- Featured: senior capstone -->
@@ -749,7 +749,7 @@
       <div class="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-t border-hair pt-4 font-mono text-[11.5px] text-mut">
         <span>Repository private</span>
         <span class="ml-auto">Squat-depth approach referenced
-          <a href="https://github.com/rishic3/DepthCheck" target="_blank" rel="noopener" class="text-cy transition-colors hover:text-[#D8B4FE]">rishic3/DepthCheck</a>
+          <a href="https://github.com/rishic3/DepthCheck" target="_blank" rel="noopener" class="text-cy transition-colors hover:text-[#FFFFFF]">rishic3/DepthCheck</a>
         </span>
       </div>
     </article>
@@ -776,7 +776,7 @@
 
         <div class="mt-5 flex flex-wrap items-center gap-1.5">
           <span class="pill">Django</span><span class="pill">Python</span><span class="pill">Node.js</span><span class="pill">Tailwind CSS</span>
-          <a href="https://github.com/ZaayanJ" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#D8B4FE]">
+          <a href="https://github.com/ZaayanJ" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#FFFFFF]">
             Repo
             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
           </a>
@@ -805,7 +805,7 @@
 
         <div class="mt-5 flex flex-wrap items-center gap-1.5">
           <span class="pill">Python</span><span class="pill">Gemini 2.5 Pro</span><span class="pill">PyMuPDF</span><span class="pill">Streamlit</span>
-          <a href="https://github.com/ZaayanJ/FindTheRuling" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#D8B4FE]">
+          <a href="https://github.com/ZaayanJ/FindTheRuling" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#FFFFFF]">
             Repo
             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
           </a>
@@ -834,7 +834,7 @@
 
         <div class="mt-5 flex flex-wrap items-center gap-1.5">
           <span class="pill">Python</span><span class="pill">Flask</span><span class="pill">spaCy</span><span class="pill">Custom NER</span><span class="pill">PDFMiner</span>
-          <a href="https://github.com/ZaayanJ/ResumeParser" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#D8B4FE]">
+          <a href="https://github.com/ZaayanJ/ResumeParser" target="_blank" rel="noopener" class="ml-auto inline-flex items-center gap-1.5 font-mono text-[12px] text-cy transition-colors hover:text-[#FFFFFF]">
             Repo
             <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
           </a>
@@ -888,7 +888,7 @@
 
         <div class="border-b border-hair p-6 sm:p-8 lg:border-b-0 lg:border-r">
           <div class="label">Get in touch</div>
-          <h2 class="mt-2 font-display text-[2rem] font-black uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]" style="text-wrap: balance;">Let's build something secure</h2>
+          <h2 class="mt-2 font-display text-[2rem] font-bold uppercase leading-[1.05] tracking-[0.035em] text-fg sm:text-[2.6rem]" style="text-wrap: balance;">Let's build something secure</h2>
           <p class="mt-4 max-w-[40ch] text-[14px] leading-relaxed text-mut">
             I'm a cybersecurity engineer at Charles Schwab in Austin. Happy to talk secure infrastructure,
             retrieval pipelines, or anything in between — email is the fastest route, and I answer within a day.
@@ -946,7 +946,7 @@
 
           <div class="mt-5 flex flex-wrap items-center gap-3">
             <button type="submit"
-                    class="inline-flex items-center gap-2 rounded-lg bg-cy px-4 py-2.5 text-[13.5px] font-semibold tracking-tight text-well transition-all hover:bg-[#C084FC] hover:shadow-[0_0_28px_-6px_rgba(168, 85, 247,.75)]">
+                    class="inline-flex items-center gap-2 rounded-lg bg-cy px-4 py-2.5 text-[13.5px] font-semibold tracking-tight text-well transition-all hover:bg-[#F2F5FA] hover:shadow-[0_0_28px_-6px_rgba(217, 222, 232,.75)]">
               Open in email client
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
@@ -1116,7 +1116,7 @@
 
       if (!name || !email || !message) {
         note.textContent = 'Add your name, email, and a message first.';
-        note.className = 'font-mono text-[11.5px] text-[#E8A0B4]';
+        note.className = 'font-mono text-[11.5px] text-[#E0A8A0]';
         return;
       }
       var body = message + '\n\n—\n' + name + '\n' + email;
