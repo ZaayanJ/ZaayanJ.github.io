@@ -57,7 +57,8 @@
           eb: '#8C1C34',
           fg: '#F2F4F8',
           mut: '#8A8F9C',
-          ok: '#F2F5FA'
+          ok: '#F2F5FA',
+          ver: '#34D399'
         }
       }
     }
@@ -72,6 +73,7 @@
     --cy: #D9DEE8;
     --eb: #8C1C34;
     --ok: #F2F5FA;
+    --ver: #34D399;
     --hair: rgba(200, 208, 222, 0.14);
   }
 
@@ -407,7 +409,7 @@
           <span class="h-2.5 w-2.5 rounded-full bg-[#1C2029]"></span>
           <span class="h-2.5 w-2.5 rounded-full bg-[#1C2029]"></span>
           <span class="ml-2 font-mono text-[11px] tracking-wide text-mut">zaayan@austin — stack</span>
-          <span class="ml-auto font-mono text-[10.5px] tracking-[.14em] text-ok">● LIVE</span>
+          <span class="ml-auto font-mono text-[10.5px] tracking-[.14em] text-ver">● LIVE</span>
         </div>
         <div class="px-4 py-4 font-mono text-[12.5px] leading-[1.85] sm:px-5 sm:text-[13px]">
           <div class="text-mut"><span class="text-cy">➜</span> <span class="text-eb">~</span> whoami</div>
@@ -1062,7 +1064,7 @@
       d.appendChild(t);
       if (!partial) {
         var s = document.createElement('span');
-        s.className = 'ml-auto shrink-0 text-ok';
+        s.className = 'ml-auto shrink-0 text-ver';
         s.textContent = '✓ ' + tag;
         d.appendChild(s);
       }
@@ -1095,7 +1097,7 @@
           setTimeout(tick, 26);
         } else {
           var s = document.createElement('span');
-          s.className = 'ml-auto shrink-0 text-ok';
+          s.className = 'ml-auto shrink-0 text-ver';
           s.textContent = '✓ ' + line[2];
           active.appendChild(s);
           i++; j = 0;
