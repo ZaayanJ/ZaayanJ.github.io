@@ -148,6 +148,10 @@
   .node::after { content: ""; position: absolute; inset: 2px; border-radius: 50%; background: var(--cy); opacity: .3; transition: opacity .3s ease; }
   .job:hover .node::after { opacity: 1; }
   .job:hover .node { box-shadow: 0 0 0 4px rgba(6, 182, 212, .14); }
+  /* rows, not panels: a hairline does the separating a border used to */
+  .job + .job { padding-top: 28px; border-top: 1px solid var(--hair); }
+  .job h3 { transition: color .25s ease; }
+  .job:hover h3 { color: #9EEAF5; }
 
   /* The role he's in now: filled node in the status color, not the accent. */
   .job.current .node { border-color: var(--ok); box-shadow: 0 0 0 4px rgba(52, 211, 153, .15); }
@@ -397,11 +401,11 @@
       <p class="max-w-[40ch] text-[13.5px] leading-relaxed text-mut">Six roles, newest first — security engineering, AI automation, and the data work underneath both.</p>
     </div>
 
-    <div class="rail space-y-4 pl-8">
+    <div class="rail space-y-8 pl-8">
 
       <!-- Schwab, full-time -->
-      <article class="job current glass lift relative rounded-xl p-5 sm:p-6">
-        <span class="node" style="left:-32px" aria-hidden="true"></span>
+      <article class="job current relative">
+        <span class="node" style="left:-32px;top:8px" aria-hidden="true"></span>
         <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
           <div>
             <div class="flex flex-wrap items-center gap-2.5">
@@ -426,8 +430,8 @@
       </article>
 
       <!-- Schwab, internship -->
-      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
-        <span class="node" style="left:-32px" aria-hidden="true"></span>
+      <article class="job relative">
+        <span class="node" style="left:-32px;top:8px" aria-hidden="true"></span>
         <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
           <div>
             <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Cybersecurity &amp; Data Engineering Intern</h3>
@@ -450,8 +454,8 @@
       </article>
 
       <!-- FrontrowMD -->
-      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
-        <span class="node" style="left:-32px" aria-hidden="true"></span>
+      <article class="job relative">
+        <span class="node" style="left:-32px;top:8px" aria-hidden="true"></span>
         <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
           <div>
             <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Lead AI Automation Engineer</h3>
@@ -474,8 +478,8 @@
       </article>
 
       <!-- Klein -->
-      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
-        <span class="node" style="left:-32px" aria-hidden="true"></span>
+      <article class="job relative">
+        <span class="node" style="left:-32px;top:8px" aria-hidden="true"></span>
         <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
           <div>
             <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Software Engineer Intern</h3>
@@ -497,8 +501,8 @@
       </article>
 
       <!-- Citgo -->
-      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
-        <span class="node" style="left:-32px" aria-hidden="true"></span>
+      <article class="job relative">
+        <span class="node" style="left:-32px;top:8px" aria-hidden="true"></span>
         <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
           <div>
             <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Data Integration Specialist</h3>
@@ -520,8 +524,8 @@
       </article>
 
       <!-- TNC -->
-      <article class="job glass lift relative rounded-xl p-5 sm:p-6">
-        <span class="node" style="left:-32px" aria-hidden="true"></span>
+      <article class="job relative">
+        <span class="node" style="left:-32px;top:8px" aria-hidden="true"></span>
         <div class="flex flex-wrap items-start justify-between gap-x-4 gap-y-1.5">
           <div>
             <h3 class="font-display text-[18px] font-semibold tracking-tight text-fg sm:text-[19px]">Data Science Intern</h3>
@@ -596,7 +600,7 @@
       </p>
 
       <figure class="mt-6 overflow-hidden rounded-lg border border-hair bg-well/40">
-        <img src="assets/formance-dashboard.jpg" width="1600" height="884" loading="lazy" decoding="async"
+        <img src="assets/formance-dashboard.jpg" width="1500" height="360" loading="lazy" decoding="async"
              alt="Formance analytics dashboard showing total sessions, total reps, average form score, best session score, current streak and total workout time, above 30-day form-score and rep-count trend charts."
              class="block w-full">
         <figcaption class="border-t border-hair px-4 py-2.5 font-mono text-[11px] tracking-wide text-mut">
