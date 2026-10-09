@@ -3,7 +3,14 @@
 Personal portfolio for Zaayan Javed. Single-page static site, deployed with GitHub
 Pages from `main` at <https://zaayanj.github.io/>.
 
+Working copy: `~/workspace/portfolio`.
 Remote: `git@github.com:ZaayanJ/ZaayanJ.github.io.git` (SSH).
+
+> There is a second clone of this same repo at `~/workspace/ZaayanJ.github.io`
+> (cloned 25 Sep, no build chain, no `CLAUDE.md`). `~/workspace/portfolio` is the
+> one to work in. If the stale clone is still there, delete it — editing the wrong
+> one means hand-editing the generated `index.html`, which the next build silently
+> discards.
 
 ---
 
@@ -174,7 +181,7 @@ grows, check for `c2pa` and rewrite it in place.
 
 ## Related files outside this repo
 
-- `~/Documents/Zaayan_Javed_Resume_2026.docx` — résumé source. It is wedged at
+- `~/Documents/JobApps/Zaayan_Javed_Resume_2026.docx` — résumé source. It is wedged at
   exactly one page: 0.18" margins, and three weak lines were cut to fit (Citgo
   pipelines bullet, Nature Conservancy visualizations bullet, the tooling line).
   Adding anything means removing something. Edited via raw `word/document.xml`
